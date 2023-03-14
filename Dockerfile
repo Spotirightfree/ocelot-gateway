@@ -8,7 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["spotirightfree-ocelot-gateway.csproj", "/"]
-RUN dotnet restore "spotirightfree-ocelot-gateway/spotirightfree-ocelot-gateway.csproj"
+RUN dotnet restore "spotirightfree-ocelot-gateway.csproj"
 COPY . .
 WORKDIR "/src/spotirightfree-ocelot-gateway"
 RUN dotnet build "spotirightfree-ocelot-gateway.csproj" -c Release -o /app/build
