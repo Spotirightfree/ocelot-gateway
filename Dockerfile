@@ -2,7 +2,7 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
-EXPOSE 44301
+EXPOSE 5184
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
@@ -17,5 +17,6 @@ RUN dotnet publish "spotirightfree-ocelot-gateway.csproj" -c Release -o /app/pub
 
 FROM base AS final
 WORKDIR /app
+ENV ASPNETCORE_URLS=http://+:5184
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "spotirightfree-ocelot-gateway.dll"]
