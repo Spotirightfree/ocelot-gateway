@@ -17,7 +17,7 @@
         "DownstreamScheme": "http",
         "DownstreamHostAndPorts": [
           {
-            "Host": "localhost",
+            "Host": "playlist-service",
             "Port": 5049
           }
         ],
@@ -29,7 +29,7 @@
         "DownstreamScheme": "http",
         "DownstreamHostAndPorts": [
           {
-            "Host": "localhost",
+            "Host": "login-service",
             "Port": 5193
           }
         ],
