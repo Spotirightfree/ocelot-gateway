@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ocelotapi
+  labels:
+    app: ocelot-gateway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      service: ocelotapi
+  template:
+    metadata:
+      labels:
+        app: ocelot-gateway
+        service: ocelotapi
+    spec:
+      containers:
+        - name: ocelot-gateway
+          image: billykuiper/spotirightfree-ocelot-gateway
+          ports:
+            - containerPort: 5184
+              protocol: TCP
+          env:
+            - name: ASPNETCORE_URLS
+              value: http://+:5184
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ocelotservice
+  labels:
+    app: product-app
+    service: webapi
+spec:
+  type: NodePort
+  ports:
+    - port: 5184
+      targetPort : 5184
+      protocol: TCP
+  selector:
+    service: ocelotapi

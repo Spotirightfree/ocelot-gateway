@@ -10,12 +10,24 @@ builder.Services.AddCors(c =>
     c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
 
-IConfiguration configuration = new ConfigurationBuilder()
+if (builder.Environment.IsDevelopment())
+{
+    IConfiguration configuration = new ConfigurationBuilder()
                             .AddJsonFile("ocelot.Development.json")
                             .Build();
+    builder.Services.AddOcelot(configuration);
+}
+else
+{
+    IConfiguration configuration = new ConfigurationBuilder()
+                           .AddJsonFile("ocelot.Production.json")
+                           .Build();
+    builder.Services.AddOcelot(configuration);
+}
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddOcelot(configuration);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -29,5 +41,5 @@ if (app.Environment.IsDevelopment())
 }
 
 await app.UseOcelot();
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.Run();

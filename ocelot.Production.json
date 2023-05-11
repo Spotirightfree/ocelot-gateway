@@ -5,7 +5,7 @@
         "DownstreamScheme": "http",
         "DownstreamHostAndPorts": [
           {
-            "Host": "localhost",
+            "Host": "music-service",
             "Port": 5088
           }
         ],
@@ -17,7 +17,7 @@
         "DownstreamScheme": "http",
         "DownstreamHostAndPorts": [
           {
-            "Host": "localhost",
+            "Host": "playlist-service",
             "Port": 5049
           }
         ],
@@ -29,8 +29,7 @@
         "DownstreamScheme": "http",
         "DownstreamHostAndPorts": [
           {
-            "Host": "localhost",
-            "Port": 5193
+            "Host": "login-service"
           }
         ],
         "UpstreamPathTemplate": "/login-service/HelloWorld",

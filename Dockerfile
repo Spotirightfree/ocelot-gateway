@@ -2,21 +2,21 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 5184
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["spotirightfree-ocelot-gateway.csproj", "./"]
+COPY ["spotirightfree-ocelot-gateway.csproj", "."]
 RUN dotnet restore "spotirightfree-ocelot-gateway.csproj"
 COPY . .
-WORKDIR "/src"
+WORKDIR "/src/."
 RUN dotnet build "spotirightfree-ocelot-gateway.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "spotirightfree-ocelot-gateway.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
-WORKDIR /app
+WORKDIR /appcd 
+ENV ASPNETCORE_URLS=http://+:5184
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "spotirightfree-ocelot-gateway.dll"]
