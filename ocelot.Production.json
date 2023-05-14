@@ -29,7 +29,8 @@
         "DownstreamScheme": "http",
         "DownstreamHostAndPorts": [
           {
-            "Host": "login-service"
+            "Host": "login-service",
+            "Port": 80
           }
         ],
         "UpstreamPathTemplate": "/login-service/HelloWorld",
