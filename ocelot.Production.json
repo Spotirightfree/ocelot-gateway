@@ -5,8 +5,8 @@
         "DownstreamScheme": "http",
         "DownstreamHostAndPorts": [
           {
-            "Host": "music-service",
-            "Port": 5088
+            "Host": "192.168.49.2",
+            "Port": 30003
           }
         ],
         "UpstreamPathTemplate": "/music-service/HelloWorld",
@@ -17,8 +17,8 @@
         "DownstreamScheme": "http",
         "DownstreamHostAndPorts": [
           {
-            "Host": "playlist-service",
-            "Port": 5049
+            "Host": "192.168.49.2",
+            "Port": 30002
           }
         ],
         "UpstreamPathTemplate": "/playlist-service/HelloWorld",
